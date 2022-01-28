@@ -12,14 +12,14 @@ fun BottomNavGraph(navHostController: NavHostController){
         navController = navHostController,
         startDestination = BottombarScreen.ListView.route )
     {
+        composable(route = BottombarScreen.Calls.route){
+            Calls()
+        }
         composable(route = BottombarScreen.ListView.route){
             ListView()
         }
         composable(route = BottombarScreen.Settings.route){
             settings()
-        }
-        composable(route = BottombarScreen.Calls.route){
-            Calls()
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.whatsapp_clone
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -22,7 +23,7 @@ fun log_sample(){
     Row() {
         Image(painter = sampleImage, contentDescription = "hello", modifier = Modifier
             .width(80.dp)
-            .height(80.dp))
+            .height(80.dp) )
         Column(  modifier = Modifier
             .width(230.dp)
             .padding(vertical = 12.dp)) {

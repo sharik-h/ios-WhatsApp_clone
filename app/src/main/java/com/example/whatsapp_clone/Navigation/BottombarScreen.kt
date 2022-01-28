@@ -11,6 +11,11 @@ sealed class BottombarScreen(
     val title: String,
     val icon: ImageVector
 ){
+    object Calls: BottombarScreen(
+        route = "Calls",
+        title = "Calls",
+        icon = Icons.Default.Phone
+    )
     object ListView: BottombarScreen(
         route = "ListView",
         title = "ListView",
@@ -21,9 +26,5 @@ sealed class BottombarScreen(
         title = "settings",
         icon = Icons.Default.Settings
     )
-    object Calls: BottombarScreen(
-        route = "Calls",
-        title = "Calls",
-        icon = Icons.Default.Phone
-    )
+
 }
