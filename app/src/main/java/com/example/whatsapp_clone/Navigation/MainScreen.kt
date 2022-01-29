@@ -30,7 +30,9 @@ fun MainScreen() {
 @Composable
 fun BottomBar(navController: NavHostController){
     val screens = listOf(
+        BottombarScreen.Status,
         BottombarScreen.Calls,
+        BottombarScreen.Camera,
         BottombarScreen.ListView,
         BottombarScreen.Settings
     )

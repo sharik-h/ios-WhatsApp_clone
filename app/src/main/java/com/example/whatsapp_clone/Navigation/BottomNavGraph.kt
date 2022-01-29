@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.whatsapp_clone.Navigation.BottombarScreen
+import com.example.whatsapp_clone.pages.camerapage
+import com.example.whatsapp_clone.pages.Statuspage
 
 @Composable
 fun BottomNavGraph(navHostController: NavHostController){
@@ -12,8 +14,14 @@ fun BottomNavGraph(navHostController: NavHostController){
         navController = navHostController,
         startDestination = BottombarScreen.ListView.route )
     {
+        composable(route = BottombarScreen.Status.route){
+            Statuspage()
+        }
         composable(route = BottombarScreen.Calls.route){
             Calls()
+        }
+        composable(route = BottombarScreen.Camera.route){
+            camerapage()
         }
         composable(route = BottombarScreen.ListView.route){
             ListView()
