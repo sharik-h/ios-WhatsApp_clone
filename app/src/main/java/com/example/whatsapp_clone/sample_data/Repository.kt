@@ -9,19 +9,22 @@ class Repository {
                 name = "sharikh",
                 profile = sharikhimg,
                 lastmsg = "hi",
-                time = "10:11"
+                time = "10:11 PM",
+                status= "Missed"
             ),
             data(
                 name = "sharhan",
                 profile = sharhanimg,
                 lastmsg = "Sugam alle",
-                time = "01:55"
+                time = "Yesterday",
+                status = "Outgoing"
             ),
             data(
                 name = "Amina",
                 profile = aminaimg,
                 lastmsg = "Photo ayak",
-                time = "04:45"
+                time = "13/01/22",
+                status = "Incoming"
             )
         )
     }

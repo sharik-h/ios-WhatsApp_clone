@@ -6,5 +6,6 @@ data class data (
     val name: String,
     val profile: Painter,
     val lastmsg: String,
-    val time: String
+    val time: String,
+    val status: String
     )
