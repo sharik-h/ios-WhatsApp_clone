@@ -76,7 +76,7 @@ import com.example.whatsapp_clone.Navigation.BottombarScreen
                         navController = navController
                     )
                 }
-                    if (currentDestination?.route == "chatpage") {
+                    if (currentDestination?.route == "chatpage" || currentDestination?.route == "chatProfileDetail") {
                         LaunchedEffect(Unit ){
                             state.value = false
                         }
@@ -85,6 +85,11 @@ import com.example.whatsapp_clone.Navigation.BottombarScreen
         }
         Log.d("destination", currentDestination.toString())
         if (currentDestination?.route != "chatpage"){
+            LaunchedEffect(Unit ){
+                state.value = true
+            }
+        }
+        if (currentDestination?.route != "chatProfileDetail"){
             LaunchedEffect(Unit ){
                 state.value = true
             }

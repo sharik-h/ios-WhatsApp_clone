@@ -3,6 +3,7 @@ package com.example.whatsapp_clone.pages
 import android.graphics.drawable.Icon
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -23,10 +24,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.whatsapp_clone.Navigation.BottombarScreen
 import com.example.whatsapp_clone.R
 
 @Composable
-fun chatPage() {
+fun chatPage(navController: NavHostController) {
     Box() {
 
         Column(modifier = Modifier.fillMaxSize()) {
@@ -126,21 +131,27 @@ fun chatPage() {
                         contentDescription = "go back to listView page.",
                     )
                 }
-                val profilepic: Painter = painterResource(id = R.drawable.img_0922)
-                Image(
-                    painter = profilepic,
-                    contentDescription = "",
-                    modifier = Modifier.clip(RoundedCornerShape(50))
-                )
-                Text(
-                    text = "Sharikh",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(top = 7.dp, start = 10.dp)
-                )
-                
-                Spacer(modifier = Modifier.width(110.dp))
-                
+
+                Row(
+                    modifier = Modifier
+                        .clickable(
+                            onClick = {navController.navigate(BottombarScreen.chatProfileDetail.route)
+                            })
+                ) {
+                    val profilepic: Painter = painterResource(id = R.drawable.img_0922)
+                    Image(
+                        painter = profilepic,
+                        contentDescription = "",
+                        modifier = Modifier.clip(RoundedCornerShape(50))
+                    )
+                    Text(
+                        text = "Sharikh",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(top = 7.dp, start = 10.dp)
+                    )
+                    Spacer(modifier = Modifier.width(110.dp))
+                }
                 val videoimg: Painter = painterResource(id = R.drawable.video_camera_64)
                 IconButton(onClick = { /*TODO*/ }) {
                     Image(
@@ -172,5 +183,5 @@ fun chatPage() {
 @Preview(showBackground = true)
 @Composable
 fun PreviewchatPage() {
-    chatPage()
+    chatPage(navController = rememberNavController())
 }

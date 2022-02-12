@@ -51,4 +51,10 @@ sealed class BottombarScreen(
         icon = "chatsampleimg",
         status = true
     )
+    object chatProfileDetail: BottombarScreen(
+        route = "chatProfileDetail",
+        title = "chatProfileDetail",
+        icon = "chatProfileDetail",
+        status = false
+    )
 }
