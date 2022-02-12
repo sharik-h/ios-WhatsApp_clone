@@ -17,10 +17,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.whatsapp_clone.sample_data.Repository
 
 @Composable
-fun ListView() {
+fun ListView(navController: NavHostController) {
 
     Column(Modifier.fillMaxSize()) {
         //AppBar
@@ -105,7 +107,7 @@ fun ListView() {
                 modifier = Modifier.padding(top = 10.dp)
             ) {
                 items(items = getData){ data ->
-                    sample(data)
+                    sample(navController = navController,data)
                 }
             }
 
@@ -114,8 +116,10 @@ fun ListView() {
     }
 }
 
+
+
 @Preview(showBackground = true)
 @Composable
 fun PreviewListView() {
-    ListView()
+    ListView(navController = rememberNavController())
 }

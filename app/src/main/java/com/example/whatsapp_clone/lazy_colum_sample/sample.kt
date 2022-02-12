@@ -1,9 +1,9 @@
 package com.example.whatsapp_clone
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,14 +16,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.whatsapp_clone.Navigation.BottombarScreen
 import com.example.whatsapp_clone.sample_data.data
 
 @Composable
-fun sample(data: data) {
+fun sample(navController:NavHostController, data: data) {
 Column()  {
 
 
-    Row(modifier = Modifier.padding(start = 15.dp))
+    Row(
+        modifier = Modifier
+            .padding(start = 15.dp)
+            .clickable(onClick = {
+                navController.navigate(BottombarScreen.Chatpage.route) {
+                    popUpTo(navController.graph.findStartDestination().id)
+                }
+            })
+    )
     {
         Image(
             painter = data.profile,
@@ -63,14 +75,16 @@ Column()  {
                 .padding(top = 5.dp, end = 20.dp)
                 .width(80.dp)
                 .height(34.dp))
-    }
-    Divider(color = Color.LightGray, thickness = 1.dp, modifier = Modifier.padding(top = 10.dp,start = 95.dp))
+        }
+
 }
+
+
 }
 
 @Preview(showBackground = true)
 @Composable
 fun Previewsample() {
     val image: Painter = painterResource(id = R.drawable.rocket)
-    sample(data = data(name = "sharikh", lastmsg = "hello", time = "12/01/22", profile = image, status = "Missed"))
+    sample(navController = rememberNavController(),data = data(name = "sharikh", lastmsg = "hello", time = "12/01/22", profile = image, status = "Missed"))
 }
