@@ -7,54 +7,45 @@ sealed class BottombarScreen(
     val route: String,
     val title: String,
     val icon: String,
-    val status: Boolean
 ){
     object Status: BottombarScreen(
         route = "Status",
         title = "Status",
-        icon = "statusimg",
-        status = true
+        icon = "statusimg"
     )
     object Calls: BottombarScreen(
         route = "Calls",
         title = "Calls",
-        icon = "callimg",
-        status = true
+        icon = "callimg"
     )
     object Camera: BottombarScreen(
         route = "Camera",
         title = "Camera",
-        icon = "cameraimg",
-        status = true
+        icon = "cameraimg"
     )
     object ListView: BottombarScreen(
         route = "ListView",
         title = "Chats",
-        icon = "chatimg",
-        status = true
+        icon = "chatimg"
     )
     object Settings: BottombarScreen(
         route = "settings",
         title = "settings",
-        icon = "settingimg",
-        status = true
+        icon = "settingimg"
     )
     object Chatpage: BottombarScreen(
         route = "chatpage",
         title = "chatpage",
-        icon = "chatviewimg",
-        status = false
+        icon = "chatviewimg"
     )
     object chatsample: BottombarScreen(
         route = "chatsample",
         title = "chatsample",
-        icon = "chatsampleimg",
-        status = true
+        icon = "chatsampleimg"
     )
     object chatProfileDetail: BottombarScreen(
         route = "chatProfileDetail",
         title = "chatProfileDetail",
-        icon = "chatProfileDetail",
-        status = false
+        icon = "chatProfileDetail"
     )
 }
