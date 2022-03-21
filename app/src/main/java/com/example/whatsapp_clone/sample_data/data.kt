@@ -9,3 +9,8 @@ data class data (
     val time: String,
     val status: String
     )
+
+data class loggedstatus (
+    val name: String,
+    val userId: String
+        )

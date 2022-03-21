@@ -8,6 +8,11 @@ sealed class BottombarScreen(
     val title: String,
     val icon: String,
 ){
+    object MainScreen: BottombarScreen(
+        route = "MainScreen",
+        title = "MainScreen",
+        icon = "Mainimg"
+    )
     object Status: BottombarScreen(
         route = "Status",
         title = "Status",
