@@ -32,7 +32,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-        useIR = true
+//        useIR = true
     }
     buildFeatures {
         compose true
@@ -50,6 +50,11 @@ android {
 }
 
 dependencies {
+    //Stream-chat
+    def stream_version = "4.28.2"
+    implementation "io.getstream:stream-chat-android-compose:$stream_version-beta"
+
+    implementation "androidx.compose.material:material-icons-extended:$compose_version"
 
 
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -82,8 +87,13 @@ dependencies {
 
     implementation "com.google.accompanist:accompanist-permissions:0.19.0"
 
-
+    //google-firebase
     implementation platform('com.google.firebase:firebase-bom:29.1.0')
     implementation 'com.google.firebase:firebase-auth-ktx'
+
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
 
 }

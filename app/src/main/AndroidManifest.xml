@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
+        android:usesCleartextTraffic="true"
+        android:name=".Application"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,8 +26,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".secondActivity"
-            />
+
+        <activity android:name=".secondActivity" />
+
+        <activity android:name=".loginPages.verifyActivity"/>
+
+        <activity android:name=".loginPages.userActivity" />
+
+        <activity android:name=".loginPages.verifyPhone" />
     </application>
 
 </manifest>

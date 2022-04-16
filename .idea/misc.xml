@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BuildAttributionWarningsFilter">
+    <option name="noGCSettingWarning" value="true" />
+  </component>
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/sharikh/AndroidStudioProjects/WhatsAppclone/app/src/main/res/drawable/bg_circle.xml" value="0.23148148148148148" />
         <entry key="..\:/Users/sharikh/AndroidStudioProjects/WhatsAppclone/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.15989583333333332" />
+        <entry key="..\:/Users/sharikh/AndroidStudioProjects/WhatsAppclone/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
       </map>
     </option>
   </component>
