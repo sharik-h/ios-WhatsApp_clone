@@ -1,14 +1,14 @@
 package com.example.whatsapp_clone
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -19,7 +19,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.whatsapp_clone.pages.ChatActivity
 import com.example.whatsapp_clone.sample_data.Repository
+import io.getstream.chat.android.compose.ui.channels.list.ChannelList
+import io.getstream.chat.android.compose.ui.theme.ChatTheme
 
 @Composable
 fun ListView(navController: NavHostController) {
@@ -81,13 +84,17 @@ fun ListView(navController: NavHostController) {
                     fontSize = 20.sp,
                     color = Color(0xFF1786FF)
                 )
-                Text(
-                    text = "New Group",
-                    fontSize = 20.sp,
-                    color = Color(0xFF1786FF),
-                    textAlign = TextAlign.End,
+                TextButton(
+                    onClick = {},
                     modifier = Modifier.fillMaxWidth()
-                )
+                ){
+                    Text(
+                        text = "New Group",
+                        fontSize = 20.sp,
+                        color = Color(0xFF1786FF),
+                        textAlign = TextAlign.End,
+                    )
+                }
             }
             //1786FF
             Divider(thickness = 1.dp, color = Color.LightGray)
@@ -100,18 +107,28 @@ fun ListView(navController: NavHostController) {
 
             val repository = Repository()
             val getData = repository.getAllData(sharikhimg, sharhanimg, aminaimg)
+            val context = LocalContext.current
 
-
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(10.dp),
-                modifier = Modifier.padding(top = 10.dp)
-            ) {
-                items(items = getData){ data ->
-                    sample(navController = navController,data)
+            ChatTheme {
+                ChannelList(
+                    onChannelClick = { item ->
+                      // navController.navigate(route = "chatpage/"+item.cid)
+                    context.startActivity(Intent(context, ChatActivity::class.java).putExtra("cid",item.cid))
                 }
+                )
             }
 
+//            LazyColumn(
+//                verticalArrangement = Arrangement.spacedBy(10.dp),
+//                modifier = Modifier.padding(top = 10.dp)
+//            ) {
+//                items(items = getData){ data ->
+//                    sample(navController = navController,data)
+//                }
+//            }
+
         }
+
 
     }
 }

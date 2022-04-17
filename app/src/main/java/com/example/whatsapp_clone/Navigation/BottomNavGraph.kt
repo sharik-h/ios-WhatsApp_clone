@@ -1,19 +1,16 @@
 package com.example.whatsapp_clone
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.whatsapp_clone.Navigation.BottombarScreen
-import com.example.whatsapp_clone.pages.camerapage
 import com.example.whatsapp_clone.pages.Statuspage
+import com.example.whatsapp_clone.pages.camerapage
 import com.example.whatsapp_clone.pages.chatPage
 import com.example.whatsapp_clone.pages.chatProfileDetail
 import com.example.whatsapp_clone.sample_data.data
@@ -38,11 +35,18 @@ fun BottomNavGraph(navHostController: NavHostController){
         composable(route = BottombarScreen.ListView.route){
             ListView(navController = navHostController)
         }
-        composable(route = BottombarScreen.Settings.route){
+        composable(
+            route = BottombarScreen.Settings.route,
+        ){
             settings()
         }
-        composable(route = BottombarScreen.Chatpage.route){
-            chatPage(navController = navHostController)
+        composable(
+            route = BottombarScreen.Chatpage.route,
+            arguments =  listOf(navArgument("cid"){
+                type = NavType.StringType })
+        ){
+            val cid = it.arguments?.getString("cid").toString()
+            chatPage(navController = navHostController,cid)
         }
         composable(route = BottombarScreen.chatsample.route){
             val image: Painter = painterResource(id = R.drawable.open_arrow)

@@ -1,8 +1,5 @@
 package com.example.whatsapp_clone.Navigation
 
-import androidx.compose.ui.graphics.painter.Painter
-import com.example.whatsapp_clone.R
-
 sealed class BottombarScreen(
     val route: String,
     val title: String,
@@ -39,7 +36,7 @@ sealed class BottombarScreen(
         icon = "settingimg"
     )
     object Chatpage: BottombarScreen(
-        route = "chatpage",
+        route = "chatpage/{cid}",
         title = "chatpage",
         icon = "chatviewimg"
     )
