@@ -19,11 +19,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.ViewModelProvider
 import com.example.whatsapp_clone.R
 import com.example.whatsapp_clone.data.StreamTokenApi
 import com.example.whatsapp_clone.data.StreamTokenProvider
 import com.example.whatsapp_clone.data.UserExtra
 import com.example.whatsapp_clone.secondActivity
+import com.example.whatsapp_clone.sharedpreferences.ViewModel.MainViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import io.getstream.chat.android.client.ChatClient
@@ -33,9 +35,11 @@ import io.getstream.chat.android.client.models.User
 class userActivity: ComponentActivity() {
 
     private lateinit var currentuser: FirebaseUser
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         setContent {
             profileSetUp()
         }
@@ -68,7 +72,9 @@ class userActivity: ComponentActivity() {
         )
             .enqueue { result ->
                 if (result.isSuccess) {
+                    viewModel.saveToDataStore(token, currentuser.uid.toString(), name, currentuser.phoneNumber.toString(), "https://bit.ly/2TIt8NR")
                     startActivity(Intent(applicationContext, secondActivity::class.java))
+                    finishAffinity()
                 } else {
                     Toast.makeText(applicationContext, "connection failed", Toast.LENGTH_SHORT)
                         .show()

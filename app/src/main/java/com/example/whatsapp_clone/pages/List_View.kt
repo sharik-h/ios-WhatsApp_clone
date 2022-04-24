@@ -23,9 +23,14 @@ import com.example.whatsapp_clone.pages.ChatActivity
 import com.example.whatsapp_clone.sample_data.Repository
 import io.getstream.chat.android.compose.ui.channels.list.ChannelList
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ListView(navController: NavHostController) {
+
+
+    val coroutineScope = rememberCoroutineScope()
 
     Column(Modifier.fillMaxSize()) {
         //AppBar
@@ -42,7 +47,9 @@ fun ListView(navController: NavHostController) {
             Spacer(modifier = Modifier.width(145.dp))
 
                 val newchatimg: Painter = painterResource(id = R.drawable.edit)
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = { coroutineScope.launch {
+
+                }}) {
                     Image(
                         painter = newchatimg,
                         contentDescription = "To start a new chat",
@@ -130,8 +137,11 @@ fun ListView(navController: NavHostController) {
         }
 
 
+
+        }
+
     }
-}
+
 
 
 
