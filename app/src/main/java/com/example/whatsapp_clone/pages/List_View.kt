@@ -17,17 +17,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.example.whatsapp_clone.pages.ChatActivity
 import com.example.whatsapp_clone.sample_data.Repository
-import io.getstream.chat.android.compose.ui.channels.list.ChannelList
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun ListView(navController: NavHostController) {
+fun ListView() {
 
 
     val coroutineScope = rememberCoroutineScope()
@@ -89,11 +86,12 @@ fun ListView(navController: NavHostController) {
                 Text(
                     text = "Brodcast List",
                     fontSize = 20.sp,
-                    color = Color(0xFF1786FF)
+                    color = Color(0xFF1786FF),
+                    modifier = Modifier.padding(top = 10.dp)
                 )
+                Spacer(modifier = Modifier.padding(start = 110.dp))
                 TextButton(
                     onClick = {},
-                    modifier = Modifier.fillMaxWidth()
                 ){
                     Text(
                         text = "New Group",
@@ -148,5 +146,5 @@ fun ListView(navController: NavHostController) {
 @Preview(showBackground = true)
 @Composable
 fun PreviewListView() {
-    ListView(navController = rememberNavController())
+    ListView()
 }

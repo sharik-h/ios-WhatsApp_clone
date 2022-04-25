@@ -6,18 +6,20 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.whatsapp_clone.loginPages.TermsAndCondition
-
-
+import com.example.whatsapp_clone.splashscreen.Splash
 
 
 @Composable
-fun loginPageNavGraph(navHostController: NavHostController) {
+fun loginPageNavGraph(navHostController: NavHostController, signed: Boolean) {
     NavHost(
         navController = navHostController,
-        startDestination = loginPageScreen.TandC.route
+        startDestination = loginPageScreen.splash.route
     ){
         composable(route = loginPageScreen.TandC.route){
             TermsAndCondition()
+        }
+        composable(route = loginPageScreen.splash.route){
+            Splash(navHostController = navHostController, signed = signed)
         }
     }
 }

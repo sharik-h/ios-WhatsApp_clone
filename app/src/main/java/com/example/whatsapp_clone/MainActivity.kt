@@ -22,6 +22,7 @@ class MainActivity : ComponentActivity() {
 
     private lateinit var viewModel: MainViewModel
     lateinit var navHostController: NavHostController
+    var signed = false
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,6 +57,7 @@ class MainActivity : ComponentActivity() {
                                     if (result.isSuccess){
                                         startActivity(Intent(applicationContext, secondActivity::class.java))
                                         finishAffinity()
+                                        signed = true
                                     }else {
                                         Toast.makeText(applicationContext, "Something went wrong", Toast.LENGTH_SHORT).show()
                                     }
@@ -69,7 +71,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             WhatsAppcloneTheme {
                 navHostController = rememberNavController()
-                loginPageNavGraph(navHostController = navHostController)
+                loginPageNavGraph(navHostController = navHostController,signed = signed)
+//                Splash(navHostController = navHostController)
             }
         }
     }

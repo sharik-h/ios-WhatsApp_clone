@@ -33,7 +33,7 @@ fun BottomNavGraph(navHostController: NavHostController){
             camerapage()
         }
         composable(route = BottombarScreen.ListView.route){
-            ListView(navController = navHostController)
+            ListView()
         }
         composable(
             route = BottombarScreen.Settings.route,
