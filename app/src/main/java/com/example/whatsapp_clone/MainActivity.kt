@@ -31,6 +31,7 @@ class MainActivity : ComponentActivity() {
 
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
         viewModel.readtoken.observe(this) { token ->
             viewModel.readid.observe(this) { id ->
                 viewModel.readname.observe(this) { name ->

@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 class secondActivity: ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             MainScreen()
         }

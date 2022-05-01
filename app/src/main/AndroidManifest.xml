@@ -36,6 +36,8 @@
         <activity android:name=".loginPages.verifyPhone" />
 
         <activity android:name=".pages.ChatActivity" />
+
+        <activity android:name=".pages.newChatActrivity.StartNewChatActivity"/>
     </application>
 
 </manifest>

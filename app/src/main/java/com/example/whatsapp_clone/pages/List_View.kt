@@ -17,10 +17,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.whatsapp_clone.pages.ChatActivity
+import com.example.whatsapp_clone.pages.newChatActrivity.StartNewChatActivity
 import com.example.whatsapp_clone.sample_data.Repository
+import io.getstream.chat.android.compose.ui.channels.list.ChannelList
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -28,6 +28,7 @@ fun ListView() {
 
 
     val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
 
     Column(Modifier.fillMaxSize()) {
         //AppBar
@@ -44,9 +45,8 @@ fun ListView() {
             Spacer(modifier = Modifier.width(145.dp))
 
                 val newchatimg: Painter = painterResource(id = R.drawable.edit)
-                IconButton(onClick = { coroutineScope.launch {
-
-                }}) {
+                IconButton(onClick = { context.startActivity(Intent(context, StartNewChatActivity::class.java)) }
+                ) {
                     Image(
                         painter = newchatimg,
                         contentDescription = "To start a new chat",
@@ -91,7 +91,8 @@ fun ListView() {
                 )
                 Spacer(modifier = Modifier.padding(start = 110.dp))
                 TextButton(
-                    onClick = {},
+                    onClick = {  },
+
                 ){
                     Text(
                         text = "New Group",
@@ -111,14 +112,13 @@ fun ListView() {
 
 
             val repository = Repository()
-            val getData = repository.getAllData(sharikhimg, sharhanimg, aminaimg)
+
             val context = LocalContext.current
 
             ChatTheme {
                 ChannelList(
                     onChannelClick = { item ->
                       // navController.navigate(route = "chatpage/"+item.cid)
-                    context.startActivity(Intent(context, ChatActivity::class.java).putExtra("cid",item.cid))
                 }
                 )
             }
