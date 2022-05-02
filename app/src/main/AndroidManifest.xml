@@ -38,6 +38,8 @@
         <activity android:name=".pages.ChatActivity" />
 
         <activity android:name=".pages.newChatActrivity.StartNewChatActivity"/>
+
+        <activity android:name=".pages.newGroupActivity.startNewGroupAcitivity" />
     </application>
 
 </manifest>

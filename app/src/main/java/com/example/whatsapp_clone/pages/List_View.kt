@@ -14,10 +14,11 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.whatsapp_clone.pages.ChatActivity
 import com.example.whatsapp_clone.pages.newChatActrivity.StartNewChatActivity
+import com.example.whatsapp_clone.pages.newGroupActivity.startNewGroupAcitivity
 import com.example.whatsapp_clone.sample_data.Repository
 import io.getstream.chat.android.compose.ui.channels.list.ChannelList
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
@@ -32,7 +33,7 @@ fun ListView() {
 
     Column(Modifier.fillMaxSize()) {
         //AppBar
-        TopAppBar(backgroundColor = Color.White, modifier = Modifier.fillMaxWidth(), ) {
+        TopAppBar(backgroundColor = Color.White, modifier = Modifier.fillMaxWidth()) {
                 Text(
                     text = "Edit",
                     fontSize = 18.sp,
@@ -91,8 +92,7 @@ fun ListView() {
                 )
                 Spacer(modifier = Modifier.padding(start = 110.dp))
                 TextButton(
-                    onClick = {  },
-
+                    onClick = { context.startActivity(Intent(context,startNewGroupAcitivity::class.java)) }
                 ){
                     Text(
                         text = "New Group",
@@ -119,6 +119,7 @@ fun ListView() {
                 ChannelList(
                     onChannelClick = { item ->
                       // navController.navigate(route = "chatpage/"+item.cid)
+                        context.startActivity(Intent(context, ChatActivity::class.java).putExtra("cid",item.cid))
                 }
                 )
             }
@@ -141,10 +142,3 @@ fun ListView() {
     }
 
 
-
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewListView() {
-    ListView()
-}
