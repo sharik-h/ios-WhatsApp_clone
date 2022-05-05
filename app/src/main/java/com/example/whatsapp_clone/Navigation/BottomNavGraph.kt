@@ -12,7 +12,6 @@ import com.example.whatsapp_clone.Navigation.BottombarScreen
 import com.example.whatsapp_clone.pages.Statuspage
 import com.example.whatsapp_clone.pages.camerapage
 import com.example.whatsapp_clone.pages.chatPage
-import com.example.whatsapp_clone.pages.chatProfileDetail
 import com.example.whatsapp_clone.sample_data.data
 
 
@@ -53,7 +52,7 @@ fun BottomNavGraph(navHostController: NavHostController){
             sample(navController = navHostController, data = data(name = "", lastmsg = "", time = "", profile = image, status = ""))
         }
         composable(route = BottombarScreen.chatProfileDetail.route){
-            chatProfileDetail()
+//            chatProfileDetail()
         }
     }
 }
