@@ -3,6 +3,7 @@ package com.example.whatsapp_clone.pages.newChatActrivity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -93,10 +94,9 @@ class StartNewChatActivity: ComponentActivity() {
                                 context.startActivity(
                                     Intent(context,ChatActivity::class.java)
                                         .putExtra("cid",result.data().cid)
-
                                 )
                                 finish()
-                            }else return@enqueue
+                            }else Toast.makeText(applicationContext, "sorry", Toast.LENGTH_SHORT).show()
                         } }
             )
         ) {

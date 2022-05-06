@@ -1,13 +1,11 @@
 package com.example.whatsapp_clone.pages
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.IconButton
 import androidx.compose.material.Text
@@ -24,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.example.whatsapp_clone.R
 import com.example.whatsapp_clone.ui.theme.chatbackgroud
 import com.example.whatsapp_clone.ui.theme.lblue
+import io.getstream.chat.android.client.ChatClient
 
 
 class ChatDetail: ComponentActivity() {
@@ -39,6 +38,10 @@ class ChatDetail: ComponentActivity() {
 
     @Composable
     fun chatProfileDetail() {
+
+        val cid = intent.getStringExtra("cid")!!
+        val name =
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -68,10 +71,8 @@ class ChatDetail: ComponentActivity() {
             {
                 Column {
                     Divider(thickness = 1.dp, color = DivColor)
-
-                    detailItem(title = "Sharikh", Name = true, sub = "+91 8129697750", Divider = true)
-                    detailItem(title = "You can if you belive it", Name = false, sub = "5 Feb 2022", Divider = false )
-
+                    details(title = "Sharikh", Name = true, sub = "+91 8129697750", Divider = true)
+                    details(title = "You can if you belive it", Name = false, sub = "5 Feb 2022", Divider = false )
                     Divider(thickness = 1.dp, color = DivColor)
                 }
             }
@@ -89,9 +90,51 @@ class ChatDetail: ComponentActivity() {
 
                     Divider(thickness = 1.dp, color = DivColor)
 
-                    openItem(title = "Media, Links and Docs", color = Color.Black, isImage = true, Image = mediaimg ,Arrow = true, Divider = true )
-                    openItem(title = "Starred Messages", color = Color.Black, isImage = true, Image = star ,Arrow = true, Divider = true)
-                    openItem(title = "Chats Search", color = Color.Black, isImage = true, Image = search, Arrow = true, Divider = false)
+                    Options(
+                        title = "Media, Links and Docs",
+                        color = Color.Black,
+                        isImage = true,
+                        Image = mediaimg,
+                        Arrow = true,
+                        Divider = true
+                    ) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Sorrry, this feature is not yet avilable to users",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    Options(
+                        title = "Starred Messages",
+                        color = Color.Black,
+                        isImage = true,
+                        Image = star,
+                        Arrow = true,
+                        Divider = true
+                    ) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Sorrry, this feature is not yet avilable to users",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                    Options(
+                        title = "Chats Search",
+                        color = Color.Black,
+                        isImage = true,
+                        Image = search,
+                        Arrow = true,
+                        Divider = false
+                    ) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Sorrry, this feature is not yet avilable to users",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+
 
                     Divider(thickness = 1.dp, color = DivColor)
                 }
@@ -107,7 +150,20 @@ class ChatDetail: ComponentActivity() {
 
                     Divider(thickness = 1.dp, color = DivColor)
 
-                    openItem(title = "Contact Details", color = Color.Black, isImage = true, Image = contactinfoimg,Arrow = true, Divider = false)
+                    Options(
+                        title = "Contact Details",
+                        color = Color.Black,
+                        isImage = true,
+                        Image = contactinfoimg,
+                        Arrow = true,
+                        Divider = false
+                    ) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Sorrry, this feature is not yet avilable to users",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
 
                     Divider(thickness = 1.dp, color = DivColor)
                 }
@@ -122,11 +178,52 @@ class ChatDetail: ComponentActivity() {
                     Divider(thickness = 1.dp, color = DivColor)
                     val contactinfoimg: Painter = painterResource(id = R.drawable.person_64)
 
-                    openItem(title = "Share Contact", color = lblue, isImage = false, Image = contactinfoimg, Arrow = false, Divider = true )
-                    openItem(title = "Clear Chat", color = Color.Red, isImage = false, Image = contactinfoimg, Arrow = false, Divider = true )
-                    openItem(title = "Delete Chat", color = Color.Red, isImage = false, Image = contactinfoimg, Arrow = false, Divider = false )
+                    Options(
+                        title = "Share Contact",
+                        color = lblue,
+                        isImage = false,
+                        Image = contactinfoimg,
+                        Arrow = false,
+                        Divider = true
+                    ) {
+                        Toast.makeText(
+                            applicationContext,
+                            "Sorrry, this feature is not yet avilable to users",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                    Options(
+                        title = "Clear Chat",
+                        color = Color.Red,
+                        isImage = false,
+                        Image = contactinfoimg,
+                        Arrow = false,
+                        Divider = true,
+                        onClick = {  Toast.makeText(
+                            applicationContext,
+                            "Sorrry, this feature is not yet avilable to users",
+                            Toast.LENGTH_LONG
+                        ).show() }
+
+                    )
+
+                    Options(
+                        title = "Delete Chat",
+                        color = Color.Red,
+                        isImage = false,
+                        Image = contactinfoimg,
+                        Arrow = false,
+                        Divider = false,
+                        onClick = {
+                            ChatClient.instance().deleteChannel(channelId = cid, channelType = "messaging").enqueue{
+                                if (it.isSuccess) finish()
+                                else Toast.makeText(applicationContext,"sorry something went wrong.", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    )
 
                     Divider(thickness = 1.dp, color = DivColor)
+
                 }
             }
             }
@@ -140,12 +237,20 @@ class ChatDetail: ComponentActivity() {
     }
 
     @Composable
-    fun openItem(title: String,color: Color, isImage: Boolean, Image:Painter, Arrow: Boolean, Divider: Boolean) {
+    fun Options(
+        title: String,
+        color: Color,
+        isImage: Boolean,
+        Image:Painter,
+        Arrow: Boolean,
+        Divider: Boolean,
+        onClick: () -> Unit
+    ) {
         Column {
 
             val openArrow: Painter = painterResource(id = R.drawable.open_arrow)
             Row(
-                modifier = Modifier.padding(10.dp)
+                modifier = Modifier.padding(10.dp).clickable(onClick = { onClick() } )
             ) {
                 if (isImage){
                     Image(
@@ -183,7 +288,12 @@ class ChatDetail: ComponentActivity() {
     }
 
     @Composable
-    fun detailItem(title: String, Name:Boolean, sub: String, Divider: Boolean) {
+    fun details(
+        title: String,
+        Name: Boolean,
+        sub: String,
+        Divider: Boolean
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()

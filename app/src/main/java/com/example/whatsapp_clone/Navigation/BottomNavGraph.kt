@@ -51,8 +51,8 @@ fun BottomNavGraph(navHostController: NavHostController){
             val image: Painter = painterResource(id = R.drawable.open_arrow)
             sample(navController = navHostController, data = data(name = "", lastmsg = "", time = "", profile = image, status = ""))
         }
-        composable(route = BottombarScreen.chatProfileDetail.route){
+//        composable(route = BottombarScreen.chatProfileDetail.route){
 //            chatProfileDetail()
-        }
+//        }
     }
 }

@@ -1,7 +1,6 @@
 package com.example.whatsapp_clone.pages
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
@@ -19,7 +18,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.whatsapp_clone.Navigation.BottombarScreen
 import com.example.whatsapp_clone.R
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
 
@@ -124,9 +122,9 @@ fun chatPage(navController: NavHostController, cid: String) {
 
                 Row(
                     modifier = Modifier
-                        .clickable(
-                            onClick = {navController.navigate(BottombarScreen.chatProfileDetail.route)
-                            })
+//                        .clickable(
+//                            onClick = {navController.navigate(BottombarScreen.chatProfileDetail.route)
+//                            })
                 ) {
                     val profilepic: Painter = painterResource(id = R.drawable.img_0922)
                     Image(

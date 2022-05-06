@@ -45,9 +45,9 @@ sealed class BottombarScreen(
         title = "chatsample",
         icon = "chatsampleimg"
     )
-    object chatProfileDetail: BottombarScreen(
-        route = "chatProfileDetail",
-        title = "chatProfileDetail",
-        icon = "chatProfileDetail"
-    )
+//    object chatProfileDetail: BottombarScreen(
+//        route = "chatProfileDetail",
+//        title = "chatProfileDetail",
+//        icon = "chatProfileDetail"
+//    )
 }

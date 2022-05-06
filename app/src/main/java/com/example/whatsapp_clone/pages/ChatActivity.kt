@@ -6,7 +6,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
-import com.example.whatsapp_clone.Navigation.BottombarScreen
 import io.getstream.chat.android.compose.ui.messages.MessagesScreen
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
 
@@ -27,7 +26,7 @@ class ChatActivity: ComponentActivity() {
             MessagesScreen(
                 channelId = cid,
                 onBackPressed = { finish() },
-                onHeaderActionClick = { context.startActivity(Intent(context, BottombarScreen.chatProfileDetail::class.java)) }
+                onHeaderActionClick = { context.startActivity(Intent(context, ChatDetail::class.java).putExtra("cid",cid)) }
             )
         }
     }
