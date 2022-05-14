@@ -19,6 +19,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val readimage = repository.readimage.asLiveData()
 
 
+    fun deleteFromDataStore() = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteFromDataStore()
+    }
+
     fun saveToDataStore(token: String,id: String,name: String,phone:String,image:String) = viewModelScope.launch(Dispatchers.IO) {
         repository.saveToDataStore(token,id,name,phone,image)
     }

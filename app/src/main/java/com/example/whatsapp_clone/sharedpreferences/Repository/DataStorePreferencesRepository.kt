@@ -25,6 +25,16 @@ class DataStoreRepository(context: Context) {
         name = PREFERENCE_NAME
     )
 
+    suspend fun deleteFromDataStore(){
+        dataStore.edit { preference ->
+            preference[PreferenceKeys.token] = ""
+            preference[PreferenceKeys.id] = ""
+            preference[PreferenceKeys.name] = ""
+            preference[PreferenceKeys.phone] = ""
+            preference[PreferenceKeys.image] = ""
+        }
+    }
+
     suspend fun saveToDataStore(token: String,id: String, name: String, phone: String, image: String){
         dataStore.edit { preference ->
             preference[PreferenceKeys.token] = token
