@@ -1,28 +1,23 @@
 package com.example.whatsapp_clone
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.text.method.KeyListener
 import android.util.Log
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.state.ToggleableState
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.isPopupLayout
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -31,20 +26,16 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.whatsapp_clone.Navigation.BottombarScreen
 
- @SuppressLint("UnrememberedMutableState")
+@SuppressLint("UnrememberedMutableState")
  @OptIn(ExperimentalAnimationApi::class)
  @Composable
- fun MainScreen() {
+ fun MainScreen(user: Array<String?>) {
      val navController = rememberNavController()
      Scaffold(
-         bottomBar = {
-             BottomBar(
-                 navController = navController
-             )
-         }
+         bottomBar = { BottomBar(navController = navController) }
      )
      {
-         BottomNavGraph(navHostController = navController)
+         BottomNavGraph(navHostController = navController, user = user)
      }
  }
 

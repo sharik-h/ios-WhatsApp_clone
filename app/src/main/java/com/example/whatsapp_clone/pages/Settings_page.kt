@@ -1,41 +1,48 @@
 package com.example.whatsapp_clone
 
+import android.app.Application
+import android.content.Intent
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.AlertDialog
 import androidx.compose.material.Switch
 import androidx.compose.material.TabRowDefaults.Divider
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
+import com.example.whatsapp_clone.sharedpreferences.ViewModel.MainViewModel
 import com.example.whatsapp_clone.ui.theme.STcolor
 import com.example.whatsapp_clone.ui.theme.chatbackgroud
-import com.google.firebase.auth.FirebaseAuth
-
+import io.getstream.chat.android.client.ChatClient
 
 @Composable
-fun settings()
+fun settings(user: Array<String?>)
 {
-    val currentuser = FirebaseAuth.getInstance().currentUser ?: return
 
+    val profilepic = rememberImagePainter(data = user[3], builder = { })
+
+    val context = LocalContext.current
     val star: Painter = painterResource(id = R.drawable.starred_message)
     val account: Painter = painterResource(id = R.drawable.my_account)
     val chats: Painter = painterResource(id = R.drawable.chats)
     val darkMode: Painter = painterResource(id = R.drawable.night_mode)
-    val profilepic = rememberImagePainter(data = currentuser.photoUrl, builder = {})
-
 
     Column(
         modifier = Modifier
@@ -56,7 +63,6 @@ fun settings()
             Column {
 
                 Divider(thickness = 1.dp, color = Color.LightGray)
-
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -71,13 +77,13 @@ fun settings()
                     )
                     Column {
                         Text(
-                            text = currentuser.displayName!!,
+                            text = user[1]!!,
                             fontSize = 25.sp,
                             fontFamily = helvetica,
                             modifier = Modifier.padding(start = 10.dp)
                         )
                         Text(
-                            text = currentuser.phoneNumber!!,
+                            text = user[2]!!,
                             color = STcolor,
                             modifier = Modifier.padding(start = 10.dp),
                             fontSize = 15.sp
@@ -102,20 +108,38 @@ fun settings()
                     title = "Starred Messages",
                     isImage = true,
                     Image = star,
-                    onClick = {}
+                    onClick = {
+                        Toast.makeText(
+                            context,
+                            "Sorry, this feature is not yet available to users",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 )
                 Options(
                     title = "Account",
                     isImage = true,
                     Image = account,
-                    onClick = {}
+                    onClick = {
+                        Toast.makeText(
+                            context,
+                            "Sorry, this feature is not yet available to users",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 )
 
                 Options(
                     title = "Chats",
                     isImage = true,
                     Image = chats,
-                    onClick = {}
+                    onClick = {
+                        Toast.makeText(
+                            context,
+                            "Sorry, this feature is not yet available to users",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 )
                 Options(
                     title = "Dark mode",
@@ -124,7 +148,13 @@ fun settings()
                     Arrow = false,
                     switch = true,
                     Divider = false,
-                    onClick = {}
+                    onClick = {
+                        Toast.makeText(
+                            context,
+                            "Sorry, this feature is not yet available to users",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 )
                 Divider(thickness = 1.dp, color = Color.LightGray)
             }
@@ -141,22 +171,15 @@ fun settings()
                     isImage = false,
                     Image = darkMode,
                     Arrow = false,
-                    Divider = true
-                ) { }
-                Options(
-                    title = "Delete Account",
-                    color = Color.Red,
-                    isImage = false,
-                    Image = darkMode,
-                    Arrow = false,
-                    Divider = false
-                ) { }
+                    Divider = false,
+                    AlertD = true,
+                    onClick = {  }
+                )
                 Divider(thickness = 1.dp, color = Color.LightGray)
             }
         }
     }
 }
-
 
 
 @Composable
@@ -168,20 +191,30 @@ fun Options(
     Arrow: Boolean = true,
     Divider: Boolean = true,
     switch: Boolean = false,
-    onClick: () -> Unit
+    AlertD: Boolean = false,
+    onClick: () -> Unit,
+    viewModel: MainViewModel = MainViewModel(Application())
 ) {
+
+    val context = LocalContext.current
+
     Column {
 
         val DivColor = Color.LightGray
         val openArrow: Painter = painterResource(id = R.drawable.open_arrow)
-
-        var gap: Int = 51
+        var alert = remember { mutableStateOf(false) }
+        var gap = 51
         if (!isImage)  gap = 20
 
         Row(
             modifier = Modifier
                 .padding(10.dp)
-                .clickable(onClick = { onClick() })
+                .clickable(onClick = {
+                    onClick()
+                        if (AlertD) alert.value = true
+
+
+                })
         ) {
             if (isImage){
                 Image(
@@ -222,13 +255,24 @@ fun Options(
                 modifier = Modifier.padding(start = gap.dp)
             )
         }
+        if (alert.value) {
+            AlertDialog(
+                onDismissRequest = { alert.value = false},
+                confirmButton = {
+                    TextButton(onClick = {
+                        viewModel.deleteFromDataStore()
+                        ChatClient.instance().disconnect()
+                        context.startActivity(Intent(context,MainActivity::class.java).putExtra("delete","true"))
+                    })
+                    { Text(text = "OK") }
+                },
+                dismissButton = {
+                    TextButton(onClick = {alert.value = false})
+                    { Text(text = "Cancel") }
+                },
+                title = { Text(text = "Please confirm") },
+                text = { Text(text = "Are you sure you want to Logout.") }
+            )
+        }
     }
-}
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun Previewsettings() {
-    settings()
 }

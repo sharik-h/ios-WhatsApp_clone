@@ -16,7 +16,7 @@ import com.example.whatsapp_clone.sample_data.data
 
 
 @Composable
-fun BottomNavGraph(navHostController: NavHostController){
+fun BottomNavGraph(navHostController: NavHostController, user: Array<String?>){
 
     NavHost(
         navController = navHostController,
@@ -37,7 +37,8 @@ fun BottomNavGraph(navHostController: NavHostController){
         composable(
             route = BottombarScreen.Settings.route,
         ){
-            settings()
+                settings(user = user)
+
         }
         composable(
             route = BottombarScreen.Chatpage.route,

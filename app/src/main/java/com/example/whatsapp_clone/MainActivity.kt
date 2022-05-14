@@ -3,7 +3,6 @@ package com.example.whatsapp_clone
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,13 +23,18 @@ class MainActivity : ComponentActivity() {
     lateinit var navHostController: NavHostController
     var signed = false
 
+    var delete = "false"
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        delete = intent.getStringExtra("delete").toString()
 
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+
+        if (delete == "true") {
+            viewModel.deleteFromDataStore()
+        }
 
         viewModel.readtoken.observe(this) { token ->
             viewModel.readid.observe(this) { id ->
@@ -48,15 +52,17 @@ class MainActivity : ComponentActivity() {
                                 )
                             )
 
-                            Log.d("details",token)
-                            Log.d("details", user.toString())
-
 
                             ChatClient.instance().disconnect()
                             ChatClient.instance().connectUser( user = user,token = token)
                                 .enqueue { result ->
                                     if (result.isSuccess){
-                                        startActivity(Intent(applicationContext, secondActivity::class.java))
+                                        startActivity(Intent(applicationContext, secondActivity::class.java)
+                                            .putExtra("id",id)
+                                            .putExtra("name",name)
+                                            .putExtra("phone",phone)
+                                            .putExtra("image",image)
+                                        )
                                         finishAffinity()
                                         signed = true
                                     }else {
@@ -78,5 +84,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 
 
