@@ -14,46 +14,48 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.whatsapp_clone.R
 
 @Composable
 fun TermsAndCondition() {
-    Column(
-        Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        Spacer(modifier = Modifier.padding(top = 160.dp))
-
-        val whatsappImg: Painter = painterResource(id = R.drawable.whatsapp_logo)
-        Image(
-            painter = whatsappImg,
-            contentDescription = "",
-            modifier = Modifier.size(100.dp)
-        )
-
-        Spacer(modifier = Modifier.padding(top = 110.dp))
+    Box{
 
         Column(
-            Modifier.padding(20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            val whatsappImg: Painter = painterResource(id = R.drawable.whatsapp_logo)
+            Image(
+                painter = whatsappImg,
+                contentDescription = "",
+                modifier = Modifier.size(100.dp)
+            )
+        }
+
+
+        Column(
+            Modifier.fillMaxSize().padding(20.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Bottom
         ) {
 
 
             Text(
                 text = "Welcome to WhatsApp",
                 fontWeight = FontWeight.Bold,
-                fontSize = 30.sp
+                fontSize = 27.sp
             )
             Text(
                 text = "Read our Privacy Policy Tap 'Agree & continue to accept the Terms of Services.",
-                fontSize = 16.sp,
+                fontSize = 15.sp,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(top = 5.dp)
             )
-            Spacer(modifier = Modifier.height(35.dp))
+            Spacer(modifier = Modifier.height(30.dp))
             //1786ff
             val context = LocalContext.current
             TextButton(onClick = {
@@ -66,12 +68,12 @@ fun TermsAndCondition() {
             }) {
                 Text(
                     text = "Agree & Continue",
-                    fontSize = 25.sp,
+                    fontSize = 23.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color(0xFF1786ff)
                 )
             }
-            Spacer(modifier = Modifier.height(35.dp))
+            Spacer(modifier = Modifier.height(30.dp))
 
             Text(text = "From")
             Text(
@@ -82,4 +84,10 @@ fun TermsAndCondition() {
             )
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun prev() {
+    TermsAndCondition()
 }
