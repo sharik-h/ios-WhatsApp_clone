@@ -29,13 +29,13 @@ import com.example.whatsapp_clone.Navigation.BottombarScreen
 @SuppressLint("UnrememberedMutableState")
  @OptIn(ExperimentalAnimationApi::class)
  @Composable
- fun MainScreen(user: Array<String?>) {
+ fun MainScreen(user: Array<String?>, Rnames: Array<String?>, Rimages: Array<String?>) {
      val navController = rememberNavController()
      Scaffold(
          bottomBar = { BottomBar(navController = navController) }
      )
      {
-         BottomNavGraph(navHostController = navController, user = user)
+         BottomNavGraph(navHostController = navController, user = user, Rnames = Rnames, Rimages = Rimages)
      }
  }
 

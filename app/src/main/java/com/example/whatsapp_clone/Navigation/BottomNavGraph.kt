@@ -16,7 +16,12 @@ import com.example.whatsapp_clone.sample_data.data
 
 
 @Composable
-fun BottomNavGraph(navHostController: NavHostController, user: Array<String?>){
+fun BottomNavGraph(
+    navHostController: NavHostController,
+    user: Array<String?>,
+    Rnames: Array<String?>,
+    Rimages: Array<String?>
+){
 
     NavHost(
         navController = navHostController,
@@ -26,7 +31,7 @@ fun BottomNavGraph(navHostController: NavHostController, user: Array<String?>){
             Statuspage()
         }
         composable(route = BottombarScreen.Calls.route){
-            Calls()
+            Calls(Rnames = Rnames, Rimages = Rimages)
         }
         composable(route = BottombarScreen.Camera.route){
             camerapage()
