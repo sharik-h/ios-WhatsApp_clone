@@ -10,7 +10,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.whatsapp_clone.Navigation.BottombarScreen
 import com.example.whatsapp_clone.pages.Statuspage
-import com.example.whatsapp_clone.pages.camerapage
+import com.example.whatsapp_clone.pages.TakePicture
 import com.example.whatsapp_clone.pages.chatPage
 import com.example.whatsapp_clone.sample_data.data
 
@@ -34,7 +34,7 @@ fun BottomNavGraph(
             Calls(Rnames = Rnames, Rimages = Rimages)
         }
         composable(route = BottombarScreen.Camera.route){
-            camerapage()
+            TakePicture()
         }
         composable(route = BottombarScreen.ListView.route){
             ListView()
