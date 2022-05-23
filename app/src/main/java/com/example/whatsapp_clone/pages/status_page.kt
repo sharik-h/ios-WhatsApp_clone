@@ -27,18 +27,19 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import coil.compose.rememberImagePainter
 import com.example.whatsapp_clone.R
+import com.example.whatsapp_clone.ui.theme.chatbackgroud
 import com.example.whatsapp_clone.ui.theme.lblue
 import kotlinx.coroutines.launch
 
 @SuppressLint("CheckResult")
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun Statuspage() {
+fun Statuspage(user: Array<String?>) {
 
     var isCameraSelected = false
     var imageUri: Uri? = null
@@ -101,7 +102,13 @@ fun Statuspage() {
                                         context, Manifest.permission.CAMERA
                                     ) -> {
                                         cameraLauncher.launch()
-                                        Toast.makeText(context, "Sorry for your inconvenience, but this feature is still in progress the whole feature may not be there.", Toast.LENGTH_SHORT).show()
+                                        Toast
+                                            .makeText(
+                                                context,
+                                                "Sorry for your inconvenience, but this feature is still in progress the whole feature may not be there.",
+                                                Toast.LENGTH_SHORT
+                                            )
+                                            .show()
                                         coroutineScope.launch {
                                             bottomSheetModalState.hide()
                                         }
@@ -151,10 +158,15 @@ fun Statuspage() {
         modifier = Modifier
             .background(MaterialTheme.colors.background)
     ) {
+        val camera: Painter = painterResource(id = R.drawable.ic_baseline_photo_camera_24)
+        val edit: Painter = painterResource(id = R.drawable.ic_baseline_edit_24)
+        val add: Painter = painterResource(id = R.drawable.add_button)
+        val myimage: Painter = rememberImagePainter(data = user[3])
+
         Column() {
             //AppBar
             TopAppBar(
-                backgroundColor = Color(0xFFF2F2F7),
+                backgroundColor = chatbackgroud,
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
@@ -170,7 +182,7 @@ fun Statuspage() {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(color = Color(0xFFF2F2F7))
+                    .background(color = chatbackgroud)
             )
             {
                 val helvetica = FontFamily(Font(R.font.helvetica))
@@ -205,15 +217,22 @@ fun Statuspage() {
                                 .background(Color.White)
                                 .padding(13.dp)
                         ) {
-                            val myimage: Painter = painterResource(id = R.drawable.img_0922)
-                            Image(
-                                painter = myimage,
-                                contentDescription = "my Profile pic",
-                                modifier = Modifier
-                                    .size(67.dp)
-                                    .clip(RoundedCornerShape(50))
-                            )
-
+                            Box {
+                                Image(
+                                    painter = myimage,
+                                    contentDescription = "my Profile pic",
+                                    modifier = Modifier
+                                        .size(67.dp)
+                                        .clip(RoundedCornerShape(50))
+                                )
+                                Image(
+                                    painter = add,
+                                    contentDescription = "",
+                                    modifier = Modifier
+//                                        .size(20.dp)
+                                        .padding(top = 41.dp, start = 46.dp)
+                                )
+                            }
                             Column(
                                 modifier = Modifier.padding(
                                     horizontal = 10.dp,
@@ -231,10 +250,6 @@ fun Statuspage() {
                                     color = Color(0xFF9E9E9E)
                                 )
                             }
-
-                            val camera: Painter =
-                                painterResource(id = R.drawable.ic_baseline_photo_camera_24)
-                            val edit: Painter = painterResource(id = R.drawable.ic_baseline_edit_24)
 
                             Box(
                                 modifier = Modifier.fillMaxSize(),
@@ -279,16 +294,6 @@ fun Statuspage() {
                 bitmap?.let { btm ->
                 }
             }
-
         }
-
-
     }
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun Previewstatuspage() {
-    Statuspage()
 }

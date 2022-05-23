@@ -28,7 +28,7 @@ fun BottomNavGraph(
         startDestination = BottombarScreen.ListView.route )
     {
         composable(route = BottombarScreen.Status.route){
-            Statuspage()
+            Statuspage(user = user)
         }
         composable(route = BottombarScreen.Calls.route){
             Calls(Rnames = Rnames, Rimages = Rimages)
