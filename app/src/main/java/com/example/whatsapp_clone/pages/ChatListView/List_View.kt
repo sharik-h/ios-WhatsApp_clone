@@ -18,9 +18,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.whatsapp_clone.pages.ChatActivity
-import com.example.whatsapp_clone.pages.newChatActrivity.StartNewChatActivity
-import com.example.whatsapp_clone.pages.newGroupActivity.startNewGroupAcitivity
+import com.example.whatsapp_clone.pages.ChatListView.ChatView.ChatActivity
+import com.example.whatsapp_clone.pages.newChat.StartNewChatActivity
+import com.example.whatsapp_clone.pages.newGroup.startNewGroupAcitivity
 import com.example.whatsapp_clone.ui.theme.lblue
 import io.getstream.chat.android.compose.ui.channels.list.ChannelList
 import io.getstream.chat.android.compose.ui.theme.ChatTheme

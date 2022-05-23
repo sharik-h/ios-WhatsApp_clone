@@ -1,4 +1,4 @@
-package com.example.whatsapp_clone.pages.newGroupActivity
+package com.example.whatsapp_clone.pages.newGroup
 
 import android.content.Intent
 import android.os.Bundle
@@ -35,7 +35,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.example.whatsapp_clone.pages.ChatActivity
+import com.example.whatsapp_clone.pages.ChatListView.ChatView.ChatActivity
 import com.google.firebase.auth.FirebaseAuth
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.api.models.QueryUsersRequest

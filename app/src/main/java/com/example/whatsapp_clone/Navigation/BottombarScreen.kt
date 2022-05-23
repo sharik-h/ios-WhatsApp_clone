@@ -5,11 +5,6 @@ sealed class BottombarScreen(
     val title: String,
     val icon: String,
 ){
-    object MainScreen: BottombarScreen(
-        route = "MainScreen",
-        title = "MainScreen",
-        icon = "Mainimg"
-    )
     object Status: BottombarScreen(
         route = "Status",
         title = "Status",
@@ -35,19 +30,4 @@ sealed class BottombarScreen(
         title = "settings",
         icon = "settingimg"
     )
-    object Chatpage: BottombarScreen(
-        route = "chatpage/{cid}",
-        title = "chatpage",
-        icon = "chatviewimg"
-    )
-    object chatsample: BottombarScreen(
-        route = "chatsample",
-        title = "chatsample",
-        icon = "chatsampleimg"
-    )
-//    object chatProfileDetail: BottombarScreen(
-//        route = "chatProfileDetail",
-//        title = "chatProfileDetail",
-//        icon = "chatProfileDetail"
-//    )
 }

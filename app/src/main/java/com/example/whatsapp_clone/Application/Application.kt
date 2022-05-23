@@ -1,4 +1,4 @@
-package com.example.whatsapp_clone
+package com.example.whatsapp_clone.Application
 
 import android.app.Application
 import io.getstream.chat.android.client.ChatClient

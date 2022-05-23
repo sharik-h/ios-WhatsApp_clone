@@ -1,4 +1,4 @@
-package com.example.whatsapp_clone.pages.newChatActrivity
+package com.example.whatsapp_clone.pages.newChat
 
 import android.content.Intent
 import android.os.Bundle
@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.example.whatsapp_clone.pages.ChatActivity
+import com.example.whatsapp_clone.pages.ChatListView.ChatView.ChatActivity
 import com.google.firebase.auth.FirebaseAuth
 import io.getstream.chat.android.client.ChatClient
 import io.getstream.chat.android.client.api.models.QueryUsersRequest
@@ -92,7 +92,7 @@ class StartNewChatActivity: ComponentActivity() {
                         .enqueue{ result ->
                             if (result.isSuccess){
                                 context.startActivity(
-                                    Intent(context,ChatActivity::class.java)
+                                    Intent(context, ChatActivity::class.java)
                                         .putExtra("cid",result.data().cid)
                                 )
                                 finish()

@@ -1,4 +1,4 @@
-package com.example.whatsapp_clone.pages
+package com.example.whatsapp_clone.pages.ChatListView.ChatView
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import com.example.whatsapp_clone.pages.ChatDetail
 import io.getstream.chat.android.compose.ui.messages.MessagesScreen
 import io.getstream.chat.android.compose.ui.theme.ChatTheme
 

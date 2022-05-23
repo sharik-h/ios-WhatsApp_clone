@@ -54,7 +54,6 @@ import com.example.whatsapp_clone.Navigation.BottombarScreen
         )
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentDestination = navBackStackEntry?.destination
-
         var state = rememberSaveable {(mutableStateOf(true))}
 
         AnimatedVisibility(
@@ -94,7 +93,6 @@ import com.example.whatsapp_clone.Navigation.BottombarScreen
         currentDestination: NavDestination?,
         navController: NavHostController,
     ) {
-
         val statusimg: Painter = painterResource(id = R.drawable.icons8_inactive_state_30)
         val callimg: Painter = painterResource(id = R.drawable.icons8_phone_30)
         val cameraimg: Painter = painterResource(id = R.drawable.icons8_camera_30__1_)
@@ -121,24 +119,19 @@ import com.example.whatsapp_clone.Navigation.BottombarScreen
             label = {
                 Text(
                     text = screen.title,
-                    color = Color(0xFF666666)
-                )
+                    color = Color(0xFF666666) )
             },
-
             icon = {
                 Icon(
                     painter = icon,
                     contentDescription = "",
-                    modifier = Modifier
-                        .size(30.dp),
+                    modifier = Modifier.size(30.dp),
                     tint = Color(0xFF6F6F6F)
                 )
             },
-
             selected = currentDestination?.hierarchy?.any {
                 it.route == screen.route
             } == true,
-
             onClick = {
                 navController.navigate(screen.route) {
                     popUpTo(navController.graph.findStartDestination().id)
@@ -148,6 +141,3 @@ import com.example.whatsapp_clone.Navigation.BottombarScreen
             selectedContentColor = LocalContentColor.current,
         )
     }
-
-
-//FF3700B3
